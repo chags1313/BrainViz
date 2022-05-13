@@ -128,8 +128,13 @@ if sel_coords == "Left Amygdala":
 
 
 
-btn = st.sidebar.button("Plot")
-if btn:
+#btn = st.sidebar.button("Plot")
+
+if sel_coords == 'Select Brain Region':
+    HtmlFile = open('Select Brain Region.html', 'r', encoding='utf-8')
+    source_code = HtmlFile.read() 
+    components.html(source_code, height = 1000, width = 800)    
+else:
     #dmn_coords = [sel_coords1]
     #view = plotting.view_markers(
      #   dmn_coords, ['lightgray'], marker_size=0)
@@ -137,9 +142,5 @@ if btn:
     HtmlFile = open(sel_coords+".html", 'r', encoding='utf-8')
     source_code = HtmlFile.read() 
     components.html(source_code, height = 1000, width = 800)
-else:
-    HtmlFile = open('Select Brain Region.html', 'r', encoding='utf-8')
-    source_code = HtmlFile.read() 
-    components.html(source_code, height = 1000, width = 800)    
 
 
