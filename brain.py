@@ -6,7 +6,7 @@ Created on Wed May 11 21:24:06 2022
 """
 
 import streamlit as st
-#from nilearn import plotting 
+#from nilearn import plotting ## used to generate plots for each brain region 
 import streamlit.components.v1 as components
 st.set_page_config(
         page_title="BrainViz",
@@ -17,6 +17,8 @@ st.sidebar.header("BrainViz 🧠")
 st.sidebar.subheader("3D Brain Visualization Tool for Exploration of Brain Regions and MNI Coordinates")
 
 st.header("BrainViz 🧠")
+
+## MNI coordinates for each brain region
 rprimsens = (41, -27, 47)
 lprimsnes = (-40 , -27, 44)
 rprimmotor = (38,-18,45)
@@ -82,10 +84,14 @@ rputamen = (25, 3, -1)
 lcaudate = (-11, 13, 10)
 rcaudate = (14, 13, 11)
 
+#selection box with different brain regions
+
 sel_coords = st.sidebar.selectbox('Select a Brain Region to Plot',
      ['Select Brain Region', 'Right Caudate', 'Left Caudate', "Right Putamen", "Left Putamen", "Right Thalamus", "Left Thalamus",
       "Right Globus Paladus","Left Globus Paladus","Right Nucleus Accumbens","Left Nucleus Accumbens","Right Amygdala",
       "Left Amygdala"])
+
+#
 
 if sel_coords == 'Select Brain Region':
     sel_coords1 = (14, 13, 11)
@@ -128,17 +134,13 @@ if sel_coords == "Left Amygdala":
 
 
 
-#btn = st.sidebar.button("Plot")
+## Show brain image based on select region
 
 if sel_coords == 'Select Brain Region':
     HtmlFile = open('Select Brain Region.html', 'r', encoding='utf-8')
     source_code = HtmlFile.read() 
     components.html(source_code, height = 1000, width = 800)    
 else:
-    #dmn_coords = [sel_coords1]
-    #view = plotting.view_markers(
-     #   dmn_coords, ['lightgray'], marker_size=0)
-    #view.save_as_html(sel_coords+".html") 
     HtmlFile = open(sel_coords+".html", 'r', encoding='utf-8')
     source_code = HtmlFile.read() 
     components.html(source_code, height = 1000, width = 800)
